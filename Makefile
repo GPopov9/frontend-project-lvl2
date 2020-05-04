@@ -6,3 +6,6 @@ publish:
 
 start:
 	node src/bin/gendiff.js -h
+
+lint:
+	npx eslint .
