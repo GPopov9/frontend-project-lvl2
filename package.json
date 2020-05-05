@@ -2,6 +2,7 @@
   "name": "frontend-project-lvl2",
   "version": "1.0.0",
   "description": "Hexlet Frontend Project 2 (Differences Calculation)",
+  "main": "index.js",
   "bin": {
     "gendiff": "dist/bin/gendiff.js"
   },
