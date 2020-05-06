@@ -4,7 +4,7 @@
   "description": "Hexlet Frontend Project 2 (Differences Calculation)",
   "main": "index.js",
   "bin": {
-    "gendiff": "dist/bin/gendiff.js"
+    "gendiff": "src/bin/gendiff.js"
   },
   "engines": {
     "node": ">=14"
@@ -32,7 +32,8 @@
     "@jest/globals": "^25.5.2",
     "commander": "^5.1.0",
     "lodash": "^4.17.15",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "debug": "^4.1.1",

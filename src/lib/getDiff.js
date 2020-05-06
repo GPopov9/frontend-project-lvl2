@@ -1,5 +1,7 @@
 import fs from 'fs';
+import path from 'path';
 import _ from 'lodash';
+import parser from '../lib/parser.js';
 
 
 const isEqual = (firstData, secondData) => firstData === secondData;
@@ -12,9 +14,12 @@ const format = (data) => {
 
 export default (filepath1, filepath2) => {
   const dataFirst = fs.readFileSync(filepath1, 'utf-8');
+  const extFirst = path.extname(filepath1);
   const dataSecond = fs.readFileSync(filepath2, 'utf-8');
-  const parseFirst = JSON.parse(dataFirst);
-  const parseSecond = JSON.parse(dataSecond);
+  const extSecond = path.extname(filepath2);
+  const parseFirst = parser(extFirst)(dataFirst);
+  const parseSecond = parser(extSecond)(dataSecond);
+
   const keysUnion = _.union(Object.keys(parseFirst), Object.keys(parseSecond));
   const result = _.flattenDeep(keysUnion.map((key) => {
     if (isEqual(parseFirst[key], parseSecond[key])) {
@@ -27,6 +32,7 @@ export default (filepath1, filepath2) => {
     return [`${space.repeat(2)}+ ${key}: ${parseSecond[key]}`, `${space.repeat(2)}- ${key}: ${parseFirst[key]}`];
   }));
   console.log(format(result));
+  console.log(parseFirst);
   return format(result);
 };
 
