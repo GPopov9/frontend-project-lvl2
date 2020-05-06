@@ -9,9 +9,6 @@
   "engines": {
     "node": ">=14"
   },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "test": "npx -n --experimental-vm-modules jest",
     "eslint": "eslint"
@@ -27,13 +24,15 @@
   },
   "type": "module",
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "transform": {}
   },
   "homepage": "https://github.com/GPopov9/frontend-project-lvl2#readme",
   "dependencies": {
     "@jest/globals": "^25.5.2",
     "commander": "^5.1.0",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "typescript": "^3.8.3"
   },
   "devDependencies": {
     "debug": "^4.1.1",
@@ -41,7 +40,7 @@
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jest": "^23.8.2",
-    "jest": "^25.5.3",
+    "jest": "^25.5.4",
     "jest-cli": "^25.5.3"
   }
 }
