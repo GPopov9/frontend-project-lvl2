@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import _ from 'lodash';
-import parse from './parser.js';
+import parser from './parser.js';
 
 
 const isEqual = (firstData, secondData) => firstData === secondData;
@@ -17,8 +17,8 @@ export default (filepath1, filepath2) => {
   const extFirst = path.extname(filepath1);
   const dataSecond = fs.readFileSync(filepath2, 'utf-8');
   const extSecond = path.extname(filepath2);
-  const parseFirst = parse(extFirst)(dataFirst);
-  const parseSecond = parse(extSecond)(dataSecond);
+  const parseFirst = parser(extFirst)(dataFirst);
+  const parseSecond = parser(extSecond)(dataSecond);
 
   const keysUnion = _.union(Object.keys(parseFirst), Object.keys(parseSecond));
   const result = _.flattenDeep(keysUnion.map((key) => {
