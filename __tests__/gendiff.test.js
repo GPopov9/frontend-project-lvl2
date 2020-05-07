@@ -1,5 +1,5 @@
 import fs from 'fs';
-import gendiff from '../src/lib/getDiff.js';
+import gendiff from '../src/lib/buildAST.js';
 
 describe('test gendiff', () => {
   const firstPath = '__tests__/__fixtures__/before';
