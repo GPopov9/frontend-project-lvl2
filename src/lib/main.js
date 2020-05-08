@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import getParsed from './parser.js';
 import buildAST from './buildAST.js';
+import styleAST from './stylish.js';
 
 export default (filepath1, filepath2) => {
   const dataOne = fs.readFileSync(filepath1);
@@ -11,7 +12,10 @@ export default (filepath1, filepath2) => {
   const parsedOne = getParsed(extOne)(dataOne);
   const parsedTwo = getParsed(extTwo)(dataTwo);
   const astData = buildAST(parsedOne, parsedTwo);
+  const stylish = styleAST(astData); 
 
-  return astData;
-
+  
+  console.log(stylish);
+  
+  return stylish;
 }

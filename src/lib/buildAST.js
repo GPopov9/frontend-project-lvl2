@@ -1,23 +1,28 @@
 import _ from 'lodash';
 
 const hasChildren = (itemOne, itemTwo) => _.isObject(itemOne) && _.isObject(itemTwo);
-const addNode = (children, key, status, previousValue, updatedValue) => {
- {children, key, status, previousValue, updatedValue} 
-};
-
-const isEqual = (firstData, secondData) => firstData === secondData;
-const hasNoValue = (data, key) => !_.has(data, key);
+const addNode = (key, status, previousValue, updatedValue, children) => ({key, status, previousValue, updatedValue, children});
+const isEqual = (itemOne, itemTwo) => itemOne === itemTwo;
+const hasNoValue = (item, key) => !_.has(item, key);
 
 
-export default (dataOne, dataTwo) => {
+const buildAST = (dataOne, dataTwo) => {
   const keysUnion = _.union(Object.keys(dataOne), Object.keys(dataTwo));
   const result = keysUnion.map((key) => {
-       
-   
-    
+    if (hasChildren(dataOne[key], dataTwo[key])) {
+      const children = buildAST(dataOne[key], dataTwo[key]);
+      return addNode(key, 'nested', dataOne[key], dataTwo[key], children);
+    } else if (isEqual(dataOne[key], dataTwo[key])) {
+      return addNode(key, 'notChanged', dataOne[key], dataTwo[key], [])
+    } else if (hasNoValue(dataOne, key)) {
+      return addNode(key, 'added', 'none', dataTwo[key], []);
+    } else if (hasNoValue(dataTwo, key)) {
+      return addNode(key, 'deleted', dataOne[key], 'none', []);
+    }
+    return addNode(key, 'changed', dataOne[key], dataTwo[key], []); 
   });
-  
-  console.log(format(result));
-  return format(result);
+ 
+  return result;
 };
 
+export default buildAST;

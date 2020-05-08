@@ -1,5 +1,5 @@
 import program from 'commander';
-import getDiff from './lib/buildAST.js';
+import getDiff from './lib/main.js';
 
 console.log('');
 

@@ -9,8 +9,8 @@ export default (extension) => {
     case '.yml':
       return YAML.parse;
     case '.ini':
-      return INI.parse;  
-    default: 
+      return INI.parse;
+    default:
       return undefined;
   }
 };
