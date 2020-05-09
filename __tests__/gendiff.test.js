@@ -5,10 +5,12 @@ describe('test gendiff', () => {
   const resultJsonSimple = '__tests__/Result/result.txt';
   const resultJsonNested = '__tests__/Result/result-nested.txt';
   const resultJsonPlain = '__tests__/Result/result-plain.txt';
+  const resultJsonFormat = '__tests__/Result/result-json.txt';
 
   const expectJsonSimple = fs.readFileSync(resultJsonSimple, 'utf-8');
   const expectJsonNested = fs.readFileSync(resultJsonNested, 'utf-8');
   const expectJsonPlain = fs.readFileSync(resultJsonPlain, 'utf-8');
+  const expectJsonFormatted = fs.readFileSync(resultJsonFormat, 'utf-8');
 
   it('gendiff test JSON-Simple', () => {
     const firstPathPlain = '__tests__/__fixtures__/json/before.json';
@@ -26,5 +28,11 @@ describe('test gendiff', () => {
     const firstPathNested = '__tests__/__fixtures__/json/beforeNested.json';
     const secondPathNested = '__tests__/__fixtures__/json/afterNested.json';
     expect(gendiff(firstPathNested, secondPathNested, 'plain')).toEqual(expectJsonPlain);
+  });
+
+  it('gendiff test JSON-Formatted', () => {
+    const firstPathNested = '__tests__/__fixtures__/json/beforeNested.json';
+    const secondPathNested = '__tests__/__fixtures__/json/afterNested.json';
+    expect(gendiff(firstPathNested, secondPathNested, 'json')).toEqual(expectJsonFormatted);
   });
 });
