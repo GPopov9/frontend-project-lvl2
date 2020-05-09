@@ -2,24 +2,29 @@ import fs from 'fs';
 import gendiff from '../src/lib/main.js';
 
 describe('test gendiff', () => {
-  const firstPath = '__tests__/__fixtures__/before';
-  const secondPath = '__tests__/__fixtures__/after';
-  const resultFileJSON = '__tests__/Result/result.txt';
-  const resultFileYAML = '__tests__/Result/result.txt';
-  const resultFileINI = '__tests__/Result/result.txt';
+  const resultJsonSimple = '__tests__/Result/result.txt';
+  const resultJsonNested = '__tests__/Result/result-nested.txt';
+  const resultJsonPlain = '__tests__/Result/result-plain.txt';
 
-  const expectJSON = fs.readFileSync(resultFileJSON, 'utf-8');
-  it('gendiff test JSON', () => {
-    expect(gendiff(`${firstPath}.json`, `${secondPath}.json`)).toEqual(expectJSON);
+  const expectJsonSimple = fs.readFileSync(resultJsonSimple, 'utf-8');
+  const expectJsonNested = fs.readFileSync(resultJsonNested, 'utf-8');
+  const expectJsonPlain = fs.readFileSync(resultJsonPlain, 'utf-8');
+
+  it('gendiff test JSON-Simple', () => {
+    const firstPathPlain = '__tests__/__fixtures__/json/before.json';
+    const secondPathPlain = '__tests__/__fixtures__/json/after.json';
+    expect(gendiff(firstPathPlain, secondPathPlain)).toEqual(expectJsonSimple);
   });
 
-  const expectYAML = fs.readFileSync(resultFileYAML, 'utf-8');
-  it('gendiff test YAML', () => {
-    expect(gendiff(`${firstPath}.yml`, `${secondPath}.yml`)).toEqual(expectYAML);
+  it('gendiff test JSON-Nested', () => {
+    const firstPathNested = '__tests__/__fixtures__/json/beforeNested.json';
+    const secondPathNested = '__tests__/__fixtures__/json/afterNested.json';
+    expect(gendiff(firstPathNested, secondPathNested)).toEqual(expectJsonNested);
   });
 
-  const expectINI = fs.readFileSync(resultFileINI, 'utf-8');
-  it('gendiff test INI', () => {
-    expect(gendiff(`${firstPath}.ini`, `${secondPath}.ini`)).toEqual(expectINI);
+  it('gendiff test JSON-Plain', () => {
+    const firstPathNested = '__tests__/__fixtures__/json/beforeNested.json';
+    const secondPathNested = '__tests__/__fixtures__/json/afterNested.json';
+    expect(gendiff(firstPathNested, secondPathNested, 'plain')).toEqual(expectJsonPlain);
   });
 });
