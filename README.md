@@ -2,4 +2,10 @@
 ![Node CI](https://github.com/GPopov9/frontend-project-lvl2/workflows/Node%20CI/badge.svg)
 
 # frontend-project-lvl2 (Hexlet.io) - Generate differences
-During this project developed cli-utility for searching differences in configuration files such as JSON... 
+During this project developed cli-utility for searching differences in configuration files such as JSON, ini, yaml
+
+## Installation 
+```
+https://github.com/GPopov9/frontend-project-lvl2.git
+$ make install
+```
