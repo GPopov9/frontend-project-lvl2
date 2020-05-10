@@ -5,7 +5,7 @@ start:
 	node src/bin/gendiff.js -h
 
 start-json:
-	node src/bin/gendiff.js __tests__/__fixtures__/before.json __tests__/__fixtures__/after.json
+	node src/bin/gendiff.js __tests__/__fixtures__/json/before.json __tests__/__fixtures__/json/after.json
 
 start-json-nested:
 	node src/bin/gendiff.js __tests__/__fixtures__/json/beforeNested.json __tests__/__fixtures__/json/afterNested.json
@@ -17,10 +17,10 @@ start-json-nested-plain-json:
 	node src/bin/gendiff.js --format=json __tests__/__fixtures__/json/beforeNested.json __tests__/__fixtures__/json/afterNested.json
 
 start-yaml:
-	node src/bin/gendiff.js __tests__/__fixtures__/before.yml __tests__/__fixtures__/after.yml
+	node src/bin/gendiff.js __tests__/__fixtures__/yaml/before.yml __tests__/__fixtures__/yaml/after.yml
 
 start-ini:
-	node src/bin/gendiff.js __tests__/__fixtures__/before.ini __tests__/__fixtures__/after.ini
+	node src/bin/gendiff.js __tests__/__fixtures__/ini/before.ini __tests__/__fixtures__/ini/after.ini
 
 lint:
 	npx eslint .

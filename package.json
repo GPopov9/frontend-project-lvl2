@@ -1,5 +1,5 @@
 {
-  "name": "frontend-project-lvl2",
+  "name": "gendiff-project-2",
   "version": "1.0.0",
   "description": "Hexlet Frontend Project 2 (Differences Calculation)",
   "main": "index.js",
@@ -32,9 +32,9 @@
     "@jest/globals": "^25.5.2",
     "commander": "^5.1.0",
     "ini": "^1.3.5",
+    "js-yaml": "^3.13.1",
     "lodash": "^4.17.15",
-    "typescript": "^3.8.3",
-    "yamljs": "^0.3.0"
+    "typescript": "^3.8.3"
   },
   "devDependencies": {
     "debug": "^4.1.1",
