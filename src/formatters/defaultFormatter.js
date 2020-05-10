@@ -2,6 +2,7 @@ import _ from 'lodash';
 
 const space = '    ';
 const indent = (count) => _.repeat(space, count);
+
 const getString = (item, count) => {
   if (_.isObject(item)) {
     const keysObj = Object.keys(item);
