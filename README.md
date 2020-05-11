@@ -8,4 +8,11 @@ During this project developed cli-utility for searching differences in configura
 ```
 https://github.com/GPopov9/frontend-project-lvl2.git
 $ make install
+$ npm link
 ```
+## Program Description 
+```
+$ gendiff -h
+<a href="https://asciinema.org/a/1orlltKX0QBUvAmaJvdvzQ84y" target="_blank"><img src="https://asciinema.org/a/1orlltKX0QBUvAmaJvdvzQ84y.svg" /></a>
+
+

@@ -21,6 +21,19 @@ describe('test gendiff', () => {
     expect(gendiff(firstPathPlain, secondPathPlain)).toEqual(expectJsonSimple);
   });
 
+  it('gendiff test INI-Simple', () => {
+    const firstPathPlain = '__tests__/__fixtures__/ini/before.ini';
+    const secondPathPlain = '__tests__/__fixtures__/ini/after.ini';
+    expect(gendiff(firstPathPlain, secondPathPlain)).toEqual(expectJsonSimple);
+  });
+
+  it('gendiff test Yaml-Simple', () => {
+    const firstPathPlain = '__tests__/__fixtures__/yaml/before.yml';
+    const secondPathPlain = '__tests__/__fixtures__/yaml/after.yml';
+    expect(gendiff(firstPathPlain, secondPathPlain)).toEqual(expectJsonSimple);
+  });
+
+
   it('gendiff test JSON-Nested', () => {
     expect(gendiff(firstPathNested, secondPathNested)).toEqual(expectJsonNested);
   });
