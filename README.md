@@ -16,4 +16,38 @@ $ gendiff -h
 ```
 <a href="https://asciinema.org/a/1orlltKX0QBUvAmaJvdvzQ84y" target="_blank"><img src="https://asciinema.org/a/1orlltKX0QBUvAmaJvdvzQ84y.svg" /></a>
 
+## Generate differences of plain .json files (string output)
+```
+$ gendiff <filepath1> <filepath2>
+```
+ <a href="https://asciinema.org/a/BtzdZ9Kwq4qA6cWxeLW8WHy2N" target="_blank"><img src="https://asciinema.org/a/BtzdZ9Kwq4qA6cWxeLW8WHy2N.svg" /></a>
 
+## Generate differences of plain .yml files (string output)
+```
+$ gendiff <filepath1> <filepath2>
+```
+<a href="https://asciinema.org/a/Zj7UZS1F1VntvFZNnJoRmOEs9" target="_blank"><img src="https://asciinema.org/a/Zj7UZS1F1VntvFZNnJoRmOEs9.svg" /></a>
+
+## Generate differences of plain .ini files (string output)
+```
+$ gendiff <filepath1> <filepath2>
+```
+<a href="https://asciinema.org/a/BI1GKvdKBxYnKBCcLzZegLMvh" target="_blank"><img src="https://asciinema.org/a/BI1GKvdKBxYnKBCcLzZegLMvh.svg" /></a>
+
+## Generate differences of nested .json files (string output)
+```
+$ gendiff <filepath1> <filepath2>
+```
+<a href="https://asciinema.org/a/mkeCsgk1C9wu3crrPqX43mNha" target="_blank"><img src="https://asciinema.org/a/mkeCsgk1C9wu3crrPqX43mNha.svg" /></a>
+
+## Generate differences of nested .json files (plain format)
+```
+$ gendiff --format plain <filepath1> <filepath2>
+```
+<a href="https://asciinema.org/a/5TPcz9RDdsE76Wph9jt7nj4Xn" target="_blank"><img src="https://asciinema.org/a/5TPcz9RDdsE76Wph9jt7nj4Xn.svg" /></a>
+
+## Generate differences of nested .json files (json format)
+```
+$ gendiff --format plain <filepath1> <filepath2>
+```
+<a href="https://asciinema.org/a/K3eZJ8ZdTX1a9rBLlGVKgPNo3" target="_blank"><img src="https://asciinema.org/a/K3eZJ8ZdTX1a9rBLlGVKgPNo3.svg" /></a>
