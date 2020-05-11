@@ -13,6 +13,6 @@ $ npm link
 ## Program Description 
 ```
 $ gendiff -h
-<a href="https://asciinema.org/a/1orlltKX0QBUvAmaJvdvzQ84y" target="_blank"><img src="https://asciinema.org/a/1orlltKX0QBUvAmaJvdvzQ84y.svg" /></a>
+[![asciicast](https://asciinema.org/a/1orlltKX0QBUvAmaJvdvzQ84y.svg)](https://asciinema.org/a/1orlltKX0QBUvAmaJvdvzQ84y)
 
 
