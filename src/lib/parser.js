@@ -1,5 +1,5 @@
-import YAML from 'js-yaml';
-import INI from 'ini';
+import yaml from 'js-yaml';
+import ini from 'ini';
 
 
 export default (extension) => {
@@ -7,9 +7,9 @@ export default (extension) => {
     case '.json':
       return JSON.parse;
     case '.yml':
-      return YAML.safeLoad;
+      return yaml.safeLoad;
     case '.ini':
-      return INI.decode;
+      return ini.parse;
     default:
       return undefined;
   }

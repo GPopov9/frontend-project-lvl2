@@ -1,5 +1,5 @@
 import fs from 'fs';
-import gendiff from '../src/lib/main.js';
+import gendiff from '../src/index.js';
 
 describe('test gendiff', () => {
   const resultJsonSimple = '__tests__/Result/result.txt';
@@ -15,22 +15,15 @@ describe('test gendiff', () => {
   const expectJsonPlain = fs.readFileSync(resultJsonPlain, 'utf-8');
   const expectJsonFormatted = fs.readFileSync(resultJsonFormat, 'utf-8');
 
-  it('gendiff test JSON-Simple', () => {
-    const firstPathPlain = '__tests__/__fixtures__/json/before.json';
-    const secondPathPlain = '__tests__/__fixtures__/json/after.json';
-    expect(gendiff(firstPathPlain, secondPathPlain)).toEqual(expectJsonSimple);
-  });
+  const firstPathPlain = '__tests__/__fixtures__/before';
+  const secondPathPlain = '__tests__/__fixtures__/after';
 
-  it('gendiff test INI-Simple', () => {
-    const firstPathPlain = '__tests__/__fixtures__/ini/before.ini';
-    const secondPathPlain = '__tests__/__fixtures__/ini/after.ini';
-    expect(gendiff(firstPathPlain, secondPathPlain)).toEqual(expectJsonSimple);
-  });
-
-  it('gendiff test Yaml-Simple', () => {
-    const firstPathPlain = '__tests__/__fixtures__/yaml/before.yml';
-    const secondPathPlain = '__tests__/__fixtures__/yaml/after.yml';
-    expect(gendiff(firstPathPlain, secondPathPlain)).toEqual(expectJsonSimple);
+  test.each([
+    [`${firstPathPlain}.json`, `${secondPathPlain}.json`, expectJsonSimple],
+    [`${firstPathPlain}.yml`, `${secondPathPlain}.yml`, expectJsonSimple],
+    [`${firstPathPlain}.ini`, `${secondPathPlain}.ini`, expectJsonSimple]
+  ])('Simple format JSON, INI, YAML', (a,b,expected) => {
+    expect(gendiff(a,b)).toEqual(expected);
   });
 
 
