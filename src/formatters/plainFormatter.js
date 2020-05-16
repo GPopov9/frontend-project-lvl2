@@ -2,34 +2,38 @@ import _ from 'lodash';
 
 const getValue = (item, delimiter) => item.join(delimiter);
 
-const plainFormatter = (ast, value = []) => {
-  const result = ast.map((node) => {
-    const newValue = _.concat(value, node.key);
-    switch (node.status) {
-      case 'added': {
-        const updatedValue = _.isObject(node.updatedValue) ? '[complex value]' : `value: '${node.updatedValue}'`;
-        return `Property '${getValue(newValue, '.')}' was added with ${updatedValue}`;
-      }
-      case 'deleted': {
-        return `Property '${getValue(newValue, '.')}' was deleted`;
-      }
+const plainFormatter = (ast) => {
+  const iter = (tree, property = []) => {
+    const result = tree.map((node) => {
+      const newProperty = _.concat(property, node.key);
+      switch (node.status) {
+        case 'added': {
+          const updatedValue = _.isObject(node.updatedValue) ? '[complex value]' : `value: '${node.updatedValue}'`;
+          return `Property '${getValue(newProperty, '.')}' was added with ${updatedValue}`;
+        }
+        case 'deleted': {
+          return `Property '${getValue(newProperty, '.')}' was deleted`;
+        }
 
-      case 'nested': {
-        return plainFormatter(node.children, newValue);
-      }
+        case 'nested': {
+          return iter(node.children, newProperty);
+        }
 
-      case 'changed': {
-        const updatedValue = _.isObject(node.updatedValue) ? '[complex value]' : node.updatedValue;
-        const previousValue = _.isObject(node.previousValue) ? '[complex value]' : node.previousValue;
-        return `Property '${getValue(newValue, '.')}' was changed from '${previousValue}' to '${updatedValue}'`;
+        case 'changed': {
+          const updatedValue = _.isObject(node.updatedValue) ? '[complex value]' : node.updatedValue;
+          const previousValue = _.isObject(node.previousValue) ? '[complex value]' : node.previousValue;
+          return `Property '${getValue(newProperty, '.')}' was changed from '${previousValue}' to '${updatedValue}'`;
+        }
+        default: {
+          return '';
+        }
       }
-      default: {
-        return '';
-      }
-    }
-  }).flat().filter((item) => item !== '');
+    }).flat().filter((item) => item !== '');
 
-  return getValue(result, '\n');
+    return getValue(result, '\n');
+  };
+
+  return iter(ast);
 };
 
 export default plainFormatter;

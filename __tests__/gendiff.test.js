@@ -21,9 +21,9 @@ describe('test gendiff', () => {
   test.each([
     [`${firstPathPlain}.json`, `${secondPathPlain}.json`, expectJsonSimple],
     [`${firstPathPlain}.yml`, `${secondPathPlain}.yml`, expectJsonSimple],
-    [`${firstPathPlain}.ini`, `${secondPathPlain}.ini`, expectJsonSimple]
-  ])('Simple format JSON, INI, YAML', (a,b,expected) => {
-    expect(gendiff(a,b)).toEqual(expected);
+    [`${firstPathPlain}.ini`, `${secondPathPlain}.ini`, expectJsonSimple],
+  ])('Simple format JSON, INI, YAML', (a, b, expected) => {
+    expect(gendiff(a, b)).toEqual(expected);
   });
 
 
