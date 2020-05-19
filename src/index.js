@@ -1,4 +1,4 @@
-import { readFile, readExt } from './lib/fileOps';
+import { readFile, readExt } from './lib/fileOps.js';
 import getParsed from './lib/parser.js';
 import buildAST from './lib/buildAST.js';
 import formatter from './formatters/index.js';

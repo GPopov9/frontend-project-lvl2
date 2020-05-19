@@ -11,6 +11,6 @@ export default (extension) => {
     case '.ini':
       return ini.parse;
     default:
-      return undefined;
+      throw new Error('Unknown format!');
   }
 };

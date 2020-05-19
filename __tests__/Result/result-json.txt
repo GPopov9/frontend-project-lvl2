@@ -2,43 +2,17 @@
   {
     "key": "common",
     "status": "nested",
-    "previousValue": {
-      "setting1": "Value 1",
-      "setting2": 200,
-      "setting3": true,
-      "setting6": {
-        "key": "value"
-      }
-    },
-    "updatedValue": {
-      "follow": false,
-      "setting1": "Value 1",
-      "setting3": {
-        "key": "value"
-      },
-      "setting4": "blah blah",
-      "setting5": {
-        "key5": "value5"
-      },
-      "setting6": {
-        "key": "value",
-        "ops": "vops"
-      }
-    },
     "children": [
       {
         "key": "setting1",
         "status": "notChanged",
         "previousValue": "Value 1",
-        "updatedValue": "Value 1",
-        "children": []
+        "updatedValue": "Value 1"
       },
       {
         "key": "setting2",
         "status": "deleted",
-        "previousValue": 200,
-        "updatedValue": "none",
-        "children": []
+        "updatedValue": 200
       },
       {
         "key": "setting3",
@@ -46,90 +20,59 @@
         "previousValue": true,
         "updatedValue": {
           "key": "value"
-        },
-        "children": []
+        }
       },
       {
         "key": "setting6",
         "status": "nested",
-        "previousValue": {
-          "key": "value"
-        },
-        "updatedValue": {
-          "key": "value",
-          "ops": "vops"
-        },
         "children": [
           {
             "key": "key",
             "status": "notChanged",
             "previousValue": "value",
-            "updatedValue": "value",
-            "children": []
+            "updatedValue": "value"
           },
           {
             "key": "ops",
             "status": "added",
-            "previousValue": "none",
-            "updatedValue": "vops",
-            "children": []
+            "updatedValue": "vops"
           }
         ]
       },
       {
         "key": "follow",
         "status": "added",
-        "previousValue": "none",
-        "updatedValue": false,
-        "children": []
+        "updatedValue": false
       },
       {
         "key": "setting4",
         "status": "added",
-        "previousValue": "none",
-        "updatedValue": "blah blah",
-        "children": []
+        "updatedValue": "blah blah"
       },
       {
         "key": "setting5",
         "status": "added",
-        "previousValue": "none",
         "updatedValue": {
           "key5": "value5"
-        },
-        "children": []
+        }
       }
     ]
   },
   {
     "key": "group1",
     "status": "nested",
-    "previousValue": {
-      "baz": "bas",
-      "foo": "bar",
-      "nest": {
-        "key": "value"
-      }
-    },
-    "updatedValue": {
-      "foo": "bar",
-      "baz": "bars",
-      "nest": "str"
-    },
     "children": [
       {
         "key": "baz",
         "status": "changed",
         "previousValue": "bas",
-        "updatedValue": "bars",
-        "children": []
+        "updatedValue": "bars"
       },
       {
         "key": "foo",
         "status": "notChanged",
         "previousValue": "bar",
-        "updatedValue": "bar",
-        "children": []
+        "updatedValue": "bar"
       },
       {
         "key": "nest",
@@ -137,27 +80,22 @@
         "previousValue": {
           "key": "value"
         },
-        "updatedValue": "str",
-        "children": []
+        "updatedValue": "str"
       }
     ]
   },
   {
     "key": "group2",
     "status": "deleted",
-    "previousValue": {
+    "updatedValue": {
       "abc": 12345
-    },
-    "updatedValue": "none",
-    "children": []
+    }
   },
   {
     "key": "group3",
     "status": "added",
-    "previousValue": "none",
     "updatedValue": {
       "fee": 100500
-    },
-    "children": []
+    }
   }
 ]
