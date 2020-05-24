@@ -1,21 +1,15 @@
-import { readFile, readExt } from './lib/fileOps.js';
-import getParsed from './lib/parser.js';
-import buildAST from './lib/buildAST.js';
+import fs from 'fs';
+import path from 'path';
+import getParsed from './parser.js';
+import buildAST from './buildAST.js';
 import formatter from './formatters/index.js';
 
+const readFile = (filepath) => fs.readFileSync(filepath, 'utf-8');
+const readExt = (filepath) => path.extname(filepath);
+
 export default (filepath1, filepath2, format) => {
-  const dataOne = readFile(filepath1);
-  const dataTwo = readFile(filepath2);
-
-  const extOne = readExt(filepath1);
-  const extTwo = readExt(filepath2);
-
-  const parsedOne = getParsed(extOne)(dataOne);
-  const parsedTwo = getParsed(extTwo)(dataTwo);
-
-  const astData = buildAST(parsedOne, parsedTwo);
-
-  const resultFormatted = formatter(format)(astData);
-
-  return resultFormatted;
+  const dataOne = getParsed(readExt(filepath1))(readFile(filepath1));
+  const dataTwo = getParsed(readExt(filepath2))(readFile(filepath2));
+  const astData = buildAST(dataOne, dataTwo);
+  return formatter(format)(astData);
 };

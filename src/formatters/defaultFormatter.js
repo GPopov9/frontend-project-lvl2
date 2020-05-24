@@ -5,10 +5,10 @@ const indent = (count) => _.repeat(SPACE, count);
 
 const getString = (item, count) => {
   if (_.isObject(item)) {
-    const keys = Object.keys(item);
-    const result = keys.map((key) => `${key}: ${getString(item[key], count + 1)}`);
+    const result = Object.keys(item)
+      .map((key) => `${key}: ${getString(item[key], count + 1)}`);
     const str = (`{\n${indent(count + 1)}${result.join('\n')}\n${indent(count)}}`);
-    return `${str}${indent(count)}`;
+    return str;
   }
   return item;
 };
@@ -18,14 +18,12 @@ const defaultFormatter = (ast, count = 0) => {
     .reduce((acc, node) => {
       switch (node.status) {
         case 'added': {
-          const operator = '+ ';
           const str = getString(node.updatedValue, count + 1);
-          return `${acc}\n  ${indent(count)}${operator}${node.key}: ${str}`;
+          return `${acc}\n  ${indent(count)}+ ${node.key}: ${str}`;
         }
         case 'deleted': {
-          const operator = '- ';
           const str = getString(node.updatedValue, count + 1);
-          return `${acc}\n  ${indent(count)}${operator}${node.key}: ${str}`;
+          return `${acc}\n  ${indent(count)}- ${node.key}: ${str}`;
         }
         case 'changed': {
           const previousValue = getString(node.previousValue, count + 1);
