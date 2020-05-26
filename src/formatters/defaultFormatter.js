@@ -14,8 +14,7 @@ const getString = (item, count) => {
 };
 
 const defaultFormatter = (ast, count = 0) => {
-  const astFormatted = ast
-    .reduce((acc, node) => {
+  const astFormatted = ast.reduce((acc, node) => {
       switch (node.status) {
         case 'added': {
           const str = getString(node.updatedValue, count + 1);
