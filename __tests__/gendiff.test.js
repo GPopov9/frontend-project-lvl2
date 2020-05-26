@@ -1,19 +1,23 @@
 import fs from 'fs';
 import gendiff from '../src/index.js';
 
-const extensions = ['.json', '.yml', '.ini'];
-
-const test = (ext, format) => {
-  it(`Test ${ext} with ${format}`, () => {
-    const before = `__tests__/__fixtures__/before${ext}`;
-    const after = `__tests__/__fixtures__/after${ext}`;
-    const expected = fs.readFileSync(`__tests__/__fixtures__/result-${format}.txt`, 'utf-8');
-    expect(gendiff(before, after, format)).toEqual(expected);
-  });
-};
+const expected = (format) => fs.readFileSync(`__tests__/__fixtures__/result-${format}.txt`, 'utf-8');
+const after = '__tests__/__fixtures__/after';
+const before = '__tests__/__fixtures__/before';
 
 describe('gendiff', () => {
-  extensions.forEach((extension) => test(extension, 'default'));
-  extensions.forEach((extension) => test(extension, 'plain'));
-  extensions.forEach((extension) => test(extension, 'json'));
+  test.each`
+  ext | format 
+  ${'.json'} | ${'default'}
+  ${'.ini'} | ${'default'} 
+  ${'.yml'} | ${'default'} 
+  ${'.json'} | ${'plain'} 
+  ${'.ini'} | ${'plain'} 
+  ${'.yml'} | ${'plain'} 
+  ${'.json'} | ${'json'} 
+  ${'.ini'} | ${'json'} 
+  ${'.yml'} | ${'json'}   
+  `('Test $ext file with $format format', ({ ext, format }) => {
+  expect(gendiff(`${before}${ext}`, `${after}${ext}`, format)).toBe(expected(format));
+});
 });
