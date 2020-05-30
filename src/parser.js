@@ -1,7 +1,6 @@
 import yaml from 'js-yaml';
 import ini from 'ini';
 
-
 export default (extension) => {
   switch (extension) {
     case '.json':

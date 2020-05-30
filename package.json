@@ -33,6 +33,7 @@
     "commander": "^5.1.0",
     "ini": "^1.3.5",
     "js-yaml": "^3.13.1",
+    "left-phalange-api": "^1.1.12",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
