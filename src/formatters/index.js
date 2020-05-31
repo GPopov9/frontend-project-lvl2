@@ -1,6 +1,6 @@
-import defaultFormatter from './defaultFormatter.js';
-import plainFormatter from './plainFormatter.js';
-import jsonFormatter from './jsonFormatter.js';
+import defaultFormatter from './default.js';
+import plainFormatter from './plain.js';
+import jsonFormatter from './json.js';
 
 export default (format) => {
   switch (format) {

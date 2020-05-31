@@ -5,20 +5,20 @@
     "children": [
       {
         "key": "setting1",
-        "status": "notChanged",
-        "previousValue": "Value 1",
-        "updatedValue": "Value 1"
+        "status": "unchanged",
+        "oldValue": "Value 1",
+        "newValue": "Value 1"
       },
       {
         "key": "setting2",
         "status": "deleted",
-        "updatedValue": 200
+        "newValue": 200
       },
       {
         "key": "setting3",
         "status": "changed",
-        "previousValue": true,
-        "updatedValue": {
+        "oldValue": true,
+        "newValue": {
           "key": "value"
         }
       },
@@ -28,26 +28,26 @@
         "children": [
           {
             "key": "key",
-            "status": "notChanged",
-            "previousValue": "value",
-            "updatedValue": "value"
+            "status": "unchanged",
+            "oldValue": "value",
+            "newValue": "value"
           },
           {
             "key": "ops",
             "status": "added",
-            "updatedValue": "vops"
+            "newValue": "vops"
           }
         ]
       },
       {
         "key": "setting4",
         "status": "added",
-        "updatedValue": "blah blah"
+        "newValue": "blah blah"
       },
       {
         "key": "setting5",
         "status": "added",
-        "updatedValue": {
+        "newValue": {
           "key5": "value5"
         }
       }
@@ -60,36 +60,36 @@
       {
         "key": "baz",
         "status": "changed",
-        "previousValue": "bas",
-        "updatedValue": "bars"
+        "oldValue": "bas",
+        "newValue": "bars"
       },
       {
         "key": "foo",
-        "status": "notChanged",
-        "previousValue": "bar",
-        "updatedValue": "bar"
+        "status": "unchanged",
+        "oldValue": "bar",
+        "newValue": "bar"
       },
       {
         "key": "nest",
         "status": "changed",
-        "previousValue": {
+        "oldValue": {
           "key": "value"
         },
-        "updatedValue": "str"
+        "newValue": "str"
       }
     ]
   },
   {
     "key": "group2",
     "status": "deleted",
-    "updatedValue": {
+    "newValue": {
       "abc": 12345
     }
   },
   {
     "key": "group3",
     "status": "added",
-    "updatedValue": {
+    "newValue": {
       "fee": 100500
     }
   }

@@ -12,17 +12,17 @@ const buildAST = (dataOne, dataTwo) => {
     }
     if (isEqual(dataOne[key], dataTwo[key])) {
       return {
-        key, status: 'notChanged', previousValue: dataOne[key], updatedValue: dataTwo[key],
+        key, status: 'unchanged', oldValue: dataOne[key], newValue: dataTwo[key],
       };
     }
     if (hasNoValue(dataOne, key)) {
-      return { key, status: 'added', updatedValue: dataTwo[key] };
+      return { key, status: 'added', newValue: dataTwo[key] };
     }
     if (hasNoValue(dataTwo, key)) {
-      return { key, status: 'deleted', updatedValue: dataOne[key] };
+      return { key, status: 'deleted', newValue: dataOne[key] };
     }
     return {
-      key, status: 'changed', previousValue: dataOne[key], updatedValue: dataTwo[key],
+      key, status: 'changed', oldValue: dataOne[key], newValue: dataTwo[key],
     };
   });
   return ast;
