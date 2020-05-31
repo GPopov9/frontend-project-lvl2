@@ -1,4 +1,4 @@
-import defaultFormatter from './default.js';
+import prettyFormatter from './pretty.js';
 import plainFormatter from './plain.js';
 import jsonFormatter from './json.js';
 
@@ -11,7 +11,7 @@ export default (format) => {
       return jsonFormatter;
     }
     default: {
-      return defaultFormatter;
+      return prettyFormatter;
     }
   }
 };
