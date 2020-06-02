@@ -1,13 +1,12 @@
 import _ from 'lodash';
 
-const hasChildren = (itemOne, itemTwo) => _.isObject(itemOne) && _.isObject(itemTwo);
+const isNested = (itemOne, itemTwo) => _.isObject(itemOne) && _.isObject(itemTwo);
 const isEqual = (itemOne, itemTwo) => itemOne === itemTwo;
-const hasNoValue = (item, key) => !_.has(item, key);
 
 const buildAST = (dataOne, dataTwo) => {
   const keys = _.union(Object.keys(dataOne), Object.keys(dataTwo));
   const ast = keys.map((key) => {
-    if (hasChildren(dataOne[key], dataTwo[key])) {
+    if (isNested(dataOne[key], dataTwo[key])) {
       return { key, status: 'nested', children: buildAST(dataOne[key], dataTwo[key]) };
     }
     if (isEqual(dataOne[key], dataTwo[key])) {
@@ -15,10 +14,10 @@ const buildAST = (dataOne, dataTwo) => {
         key, status: 'unchanged', oldValue: dataOne[key], newValue: dataTwo[key],
       };
     }
-    if (hasNoValue(dataOne, key)) {
+    if (!_.has(dataOne, key)) {
       return { key, status: 'added', newValue: dataTwo[key] };
     }
-    if (hasNoValue(dataTwo, key)) {
+    if (!_.has(dataTwo, key)) {
       return { key, status: 'deleted', newValue: dataOne[key] };
     }
     return {
