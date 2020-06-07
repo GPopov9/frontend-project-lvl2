@@ -18,18 +18,18 @@ const prettyFormatter = (ast, count = 0) => {
       const newString = `${node.key}: ${getString(node.newValue, count + 1)}`;
       switch (node.status) {
         case 'added':
-          return `  ${indent(count)}+ ${newString}`;
+          return `${indent(count)}  + ${newString}`;
         case 'deleted': {
-          return `  ${indent(count)}- ${newString}`;
+          return `${indent(count)}  - ${newString}`;
         }
         case 'changed': {
-          return `  ${indent(count)}+ ${newString}\n  ${indent(count)}- ${oldString}`;
+          return `${indent(count)}  + ${newString}\n  ${indent(count)}- ${oldString}`;
         }
         case 'nested': {
-          return `  ${indent(count)}  ${node.key}: ${prettyFormatter(node.children, count + 1)}`;
+          return `${indent(count)}${SPACE}${node.key}: ${prettyFormatter(node.children, count + 1)}`;
         }
         case 'unchanged': {
-          return `  ${indent(count)}  ${node.key}: ${node.oldValue}`;
+          return `${indent(count)}${SPACE}${node.key}: ${node.oldValue}`;
         }
         default: {
           throw new Error(`Invalid status '${node.status}'. Please check!`);
