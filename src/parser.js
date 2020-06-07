@@ -2,8 +2,6 @@ import yaml from 'js-yaml';
 import ini from 'ini';
 import _ from 'lodash';
 
-const iniParseStandard = (data) => ini.parse(data);
-
 const iniParseCorrect = (data) => Object.entries(data)
   .reduce((acc, [key, value]) => {
     if (_.isObject(value)) {
@@ -15,7 +13,7 @@ const iniParseCorrect = (data) => Object.entries(data)
     return { ...acc, [key]: Number(value) };
   }, {});
 
-const iniParsefinal = _.flow([iniParseStandard, iniParseCorrect]);
+const iniParsefinal = _.flow([ini.parse, iniParseCorrect]);
 
 const parser = (data, extension) => {
   switch (extension) {
