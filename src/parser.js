@@ -2,21 +2,20 @@ import yaml from 'js-yaml';
 import ini from 'ini';
 import _ from 'lodash';
 
-const iniParse = (data) => {
-  const file = ini.parse(data);
+const iniParseStandard = (data) => ini.parse(data);
 
-  const iter = (node) => Object.entries(node)
-    .reduce((acc, [key, value]) => {
-      if (_.isObject(value)) {
-        return { ...acc, [key]: iter(value) };
-      }
-      if (Number.isNaN(Number(value)) || (typeof (value) === 'boolean')) {
-        return { ...acc, [key]: value };
-      }
-      return { ...acc, [key]: Number(value) };
-    }, {});
-  return iter(file);
-};
+const iniParseCorrect = (data) => Object.entries(data)
+  .reduce((acc, [key, value]) => {
+    if (_.isObject(value)) {
+      return { ...acc, [key]: iniParseCorrect(value) };
+    }
+    if (Number.isNaN(Number(value)) || (typeof (value) === 'boolean')) {
+      return { ...acc, [key]: value };
+    }
+    return { ...acc, [key]: Number(value) };
+  }, {});
+
+const iniParsefinal = _.flow([iniParseStandard, iniParseCorrect]);
 
 const parser = (data, extension) => {
   switch (extension) {
@@ -25,7 +24,7 @@ const parser = (data, extension) => {
     case 'yml':
       return yaml.safeLoad(data);
     case 'ini':
-      return iniParse(data);
+      return iniParsefinal(data);
     default:
       throw new Error(`Unknown format ${extension}!`);
   }
