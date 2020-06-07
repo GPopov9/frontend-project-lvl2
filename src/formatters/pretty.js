@@ -4,12 +4,11 @@ const SPACE = '    ';
 const indent = (count) => SPACE.repeat(count);
 
 const getString = (item, count) => {
-  if (_.isObject(item)) {
-    const str = Object.entries(item)
-      .map(([key, value]) => `{\n${indent(count + 1)}${key}: ${getString(value, count + 1)}\n${indent(count)}}`);
-    return str;
+  if (!_.isObject(item)) {
+    return item;
   }
-  return item;
+  return Object.entries(item)
+    .map(([key, value]) => `{\n${indent(count + 1)}${key}: ${getString(value, count + 1)}\n${indent(count)}}`);
 };
 
 const prettyFormatter = (ast, count = 0) => {
