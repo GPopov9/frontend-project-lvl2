@@ -1,15 +1,12 @@
 import _ from 'lodash';
 
-const isNested = (itemOne, itemTwo) => _.isObject(itemOne) && _.isObject(itemTwo);
-const isEqual = (itemOne, itemTwo) => itemOne === itemTwo;
-
 const buildAST = (dataOne, dataTwo) => {
   const keys = _.union(Object.keys(dataOne), Object.keys(dataTwo));
   const ast = keys.map((key) => {
-    if (isNested(dataOne[key], dataTwo[key])) {
+    if (_.isObject(dataOne[key]) && _.isObject(dataTwo[key])) {
       return { key, status: 'nested', children: buildAST(dataOne[key], dataTwo[key]) };
     }
-    if (isEqual(dataOne[key], dataTwo[key])) {
+    if (dataOne[key] === dataTwo[key]) {
       return {
         key, status: 'unchanged', oldValue: dataOne[key], newValue: dataTwo[key],
       };
