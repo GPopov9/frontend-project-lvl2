@@ -11,7 +11,5 @@ export default (filepath1, filepath2, outputFormat) => {
   const dataOne = parse(readFile(filepath1), readExt(filepath1));
   const dataTwo = parse(readFile(filepath2), readExt(filepath2));
   const astData = buildAST(dataOne, dataTwo);
-  //console.log(format(outputFormat)(astData))
-  
   return format(outputFormat)(astData);
 };
