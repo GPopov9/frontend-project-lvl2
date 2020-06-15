@@ -3,13 +3,12 @@ import gendiff from '../src/index.js';
 
 const types = ['json', 'yml', 'ini'];
 const formats = ['pretty', 'plain', 'json'];
+const path = '__tests__/__fixtures__/';
 
-const expected = (format) => fs.readFileSync(`__tests__/__fixtures__/result-${format}.txt`, 'utf-8');
-const after = '__tests__/__fixtures__/after';
-const before = '__tests__/__fixtures__/before';
+const expected = (format) => fs.readFileSync(`${path}result-${format}.txt`, 'utf-8');
 
 describe.each(formats)('Generate differences tests', (format) => {
   it.each(types)(`For %s file type with ${format} format`, (type) => {
-    expect(gendiff(`${before}.${type}`, `${after}.${type}`, format)).toBe(expected(format));
+    expect(gendiff(`${path}before.${type}`, `${path}after.${type}`, format)).toBe(expected(format));
   });
 });
