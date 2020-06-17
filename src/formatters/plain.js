@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 const getValue = (value) => {
   switch (typeof value) {
     case 'object':
@@ -11,7 +9,7 @@ const getValue = (value) => {
   }
 };
 
-const plainFormatter = (ast, property = '') => _.compact(ast
+const plainFormatter = (ast, property = '') => ast
   .map((node) => {
     const newProperty = property === '' ? node.key : `${property}.${node.key}`;
     switch (node.status) {
@@ -24,10 +22,12 @@ const plainFormatter = (ast, property = '') => _.compact(ast
       case 'changed':
         return `Property '${newProperty}' was changed from ${getValue(node.oldValue)} to ${getValue(node.newValue)}`;
       case 'unchanged':
-        return '';
+        return null;
       default:
         throw new Error(`Invalid status '${node.status}'. Please check!`);
     }
-  })).join('\n');
+  })
+  .filter((node) => node !== null)
+  .join('\n');
 
 export default (ast) => plainFormatter(ast);
